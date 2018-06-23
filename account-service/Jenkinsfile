@@ -18,24 +18,14 @@ node {
             sh 'mvn clean install'
 
         }
+        stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
 
-        stage('Image') {
-            dir ('account-service') {
-               def app = docker.build.inside("--volume=/var/run/docker.sock:/var/run/docker.sock") 
-                app.push()
-                
-            }
+        app = docker.build("account-service:1.0")
         }
 
-        stage ('Run') {
-            docker.image("localhost:5000/account-service:${env.version}").run('-p 2222:2222 -h account --name account --link discovery')
-        }
-
-        stage ('Final') {
-            build job: 'customer-service-pipeline', wait: false
-        }      
-
-    }
-
+     }
+      
 }
 
