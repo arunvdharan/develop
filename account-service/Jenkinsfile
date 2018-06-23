@@ -21,12 +21,12 @@ node {
 
         stage('Image') {
             dir ('account-service') {
-                docker.build.inside("--volume=/var/run/docker.sock:/var/run/docker.sock") {
+                def app = docker.build.inside("--volume=/var/run/docker.sock:/var/run/docker.sock") 
    // The build here
 
              //   def app = docker.build "localhost:5000/account-service:${env.version}"
                 app.push()
-                }
+                
             }
         }
 
