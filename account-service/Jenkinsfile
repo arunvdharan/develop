@@ -8,6 +8,7 @@ node {
         }
 
         stage('Build') {
+            sh 'apt-get install maven'
             sh 'mvn clean install'
 
             def pom = readMavenPom file:'pom.xml'
