@@ -1,19 +1,4 @@
-properties([
-    parameters([
-        string(defaultValue: 'jenkinsci/jnlp-slave:2.62-alpine', description: '', name: 'JNLP_IMAGE'),
-     ]),
-    pipelineTriggers([])
-])
-podTemplate(label: 'build-pod',
-    containers: [
-        containerTemplate(name: 'jnlp', image: JNLP_IMAGE, args: '${computer.jnlpmac} ${computer.name}'),
-        containerTemplate(name: 'golang', image: 'golang:1.7', ttyEnabled: true, command: 'cat')
-    ],
-    volumes: [
-        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
-    ]
-) {
-node('build-pod') {
+node {
 
     withMaven(maven:'maven') {
 
@@ -44,4 +29,4 @@ node('build-pod') {
     }
 
 }
-}
+
