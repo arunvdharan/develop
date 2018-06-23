@@ -1,5 +1,3 @@
- using hostname.
-
 [code language="java"]
 node {
 
