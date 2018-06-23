@@ -1,3 +1,9 @@
+properties([
+    parameters([
+        string(defaultValue: 'jenkinsci/jnlp-slave:2.62-alpine', description: '', name: 'JNLP_IMAGE'),
+     ]),
+    pipelineTriggers([])
+])
 podTemplate(label: 'build-pod',
     containers: [
         containerTemplate(name: 'jnlp', image: JNLP_IMAGE, args: '${computer.jnlpmac} ${computer.name}'),
