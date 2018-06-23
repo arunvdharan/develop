@@ -6,7 +6,7 @@ node {
     
     def mavenHome  = tool 'maven'
     def docker = tool 'docker'
-     agent { dockerfile true }
+   
    
      }
 
@@ -18,12 +18,7 @@ node {
             sh 'mvn clean install'
 
         }
-        stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("account-service:1.0")
-        }
+       
 
      }
       
