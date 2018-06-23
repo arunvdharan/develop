@@ -5,8 +5,8 @@ node {
         stage('Initialize'){
     
     def mavenHome  = tool 'maven'
-    def docker = "docker"
-   
+    def docker = tool 'docker'
+     agent { dockerfile true }
    
      }
 
