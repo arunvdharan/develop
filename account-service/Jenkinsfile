@@ -5,6 +5,9 @@ node {
         stage('Initialize'){
     def dockerHome = tool 'docker'
     def mavenHome  = tool 'maven'
+     volumes: [
+        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
+    ]
     env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
      }
 
