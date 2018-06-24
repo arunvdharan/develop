@@ -1,7 +1,4 @@
-node {
-
-    withMaven(maven:'maven') {
-        
+     
         stage('Initialize'){
     
     def mavenHome  = tool 'maven'
@@ -20,6 +17,3 @@ node {
         }
        
 
-     }
-      
-}
